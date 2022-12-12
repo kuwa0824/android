@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="40dp"
+    android:paddingEnd="40dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:gravity="center"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/main_b1"
+        android:text="Microstripline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="10dp"
+        android:paddingBottom="15dp"
+        android:gravity="center|bottom"
+        android:background="@drawable/bbg1"
+        android:textColor="#000000" />
+    <Button
+        android:id="@+id/main_b2"
+        android:text="Differencial Microstripline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="10dp"
+        android:paddingBottom="15dp"
+        android:gravity="center|bottom"
+        android:background="@drawable/bbg2"
+        android:textColor="#000000" />
+    <Button
+        android:id="@+id/main_b3"
+        android:text="Stripline (symmetric)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="10dp"
+        android:paddingBottom="15dp"
+        android:gravity="center|bottom"
+        android:background="@drawable/bbg3"
+        android:textColor="#000000" />
+    <Button
+        android:id="@+id/main_b4"
+        android:text="Stripline (asymmetric)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="10dp"
+        android:paddingBottom="15dp"
+        android:gravity="center|bottom"
+        android:background="@drawable/bbg4"
+        android:textColor="#000000" />
+</LinearLayout>
+
