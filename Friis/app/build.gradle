@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         release {
-            storeFile file('/home/kuwa/app/Friis/key.jks')
+            storeFile file('/home/kuwa/git/android/Friis/key.jks')
             storePassword 'maririn'
-            keyAlias 'key0'
+            keyAlias 'key1'
             keyPassword 'maririn'
         }
     }
