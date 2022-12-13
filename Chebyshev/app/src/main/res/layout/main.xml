@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+    
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="12dp">
+
+            <TextView
+                android:text="Filter Type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:gravity="left"
+                android:padding="8dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="#000000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="Filter Function :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="8dp"
+                    android:layout_weight="2"/>
+                <Spinner
+                    android:id="@+id/funcsel_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:entries="@array/func_list"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="Layout Type :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="8dp"
+                    android:layout_weight="2"/>
+                <Spinner
+                    android:id="@+id/typesel_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:entries="@array/type_list"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"/>
+
+            <TextView
+                android:text="Design Parameters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:gravity="left"
+                android:padding="8dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="#000000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="Order (2-20) :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="8dp"
+                    android:textColor="#333333"
+                    android:layout_weight="2"/>
+                <EditText
+                    android:id="@+id/param_order"
+                    android:text="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/label_f1"
+                    android:text="Corner Frequency [MHz] :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="8dp"
+                    android:textColor="#333333"
+                    android:layout_weight="2"/>
+                <EditText
+                    android:id="@+id/param_f1"
+                    android:text="100"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/label_f2"
+                    android:text="Start Frequency [MHz] :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="8dp"
+                    android:textColor="#dddddd"
+                    android:layout_weight="2"/>
+                <EditText
+                    android:id="@+id/param_f2"
+                    android:text="80"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/label_f3"
+                    android:text="Stop Frequency [MHz] :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="8dp"
+                    android:textColor="#dddddd"
+                    android:layout_weight="2"/>
+                <EditText
+                    android:id="@+id/param_f3"
+                    android:text="120"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="Pass Band Ripple [dB] :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="8dp"
+                    android:textColor="#333333"
+                    android:layout_weight="2"/>
+                <EditText
+                    android:id="@+id/param_rpl"
+                    android:text="0.1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="Impedance [Ohm] :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="10dp"
+                    android:textColor="#333333"
+                    android:layout_weight="2"/>
+                <EditText
+                    android:id="@+id/param_z0"
+                    android:text="50"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        
+            <TextView
+                android:text="Graphic Plot Setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:gravity="left"
+                android:padding="8dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="#000000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="Start Frequency [MHz] :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="10dp"
+                    android:textColor="#333333"
+                    android:layout_weight="2"/>
+                <EditText
+                    android:id="@+id/param_g1"
+                    android:text="0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:text="Stop Frequency [MHz] :"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingEnd="10dp"
+                    android:textColor="#333333"
+                    android:layout_weight="2"/>
+                <EditText
+                    android:id="@+id/param_g2"
+                    android:text="200"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <TextView
+                android:text="Check Results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:gravity="left"
+                android:padding="8dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:background="#000000"/>
+
+            <Button
+                android:id="@+id/btn_id"
+                android:text="Calc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_margin="8dp"/>
+        
+            <io.github.kuwa0824.chebyshev.GView
+                android:id="@+id/grf_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        
+            <Button
+                android:id="@+id/save_id"
+                android:text="Save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_margin="8dp"/>
+        
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+

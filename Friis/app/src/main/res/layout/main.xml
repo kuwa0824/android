@@ -1,0 +1,312 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:scrollbarAlwaysDrawVerticalTrack="true">
+
+	<ScrollView
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical"
+			android:gravity="center_horizontal"
+			android:padding="8dp">
+			<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<TextView
+        		android:text="Radio Frequency [GHz]"
+        		android:layout_width="0dp"
+        		android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="right"
+            	android:textColor="#000000"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+            	android:paddingEnd="16dp" />
+			<EditText
+				android:id="@+id/p1"
+				android:text="1.5"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:inputType="numberDecimal"
+            	android:textAppearance="?android:attr/textAppearanceSmall" />
+		</LinearLayout>
+    		<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+        	android:text="Occupied Bandwidth [MHz]"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+			android:paddingEnd="16dp" />
+		<EditText
+			android:id="@+id/p2"
+			android:text="20"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:inputType="numberDecimal"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+	</LinearLayout>
+    		<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+        	android:text="TX Power [dBm]"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+			android:paddingEnd="16dp" />
+		<EditText
+			android:id="@+id/p3"
+			android:text="10"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:inputType="numberSigned|numberDecimal"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+	</LinearLayout>
+			<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+        	android:text="RX Noise Figure [dB]"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+			android:paddingEnd="16dp" />
+		<EditText
+			android:id="@+id/p4"
+			android:text="3.5"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:inputType="numberDecimal"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+	</LinearLayout>
+    		<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+        	android:text="TX Antenna Gain [dBi]"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+			android:paddingEnd="16dp" />
+		<EditText
+			android:id="@+id/p5"
+			android:text="3"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:inputType="numberDecimal"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+	</LinearLayout>
+    		<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+        	android:text="RX Antenna Gain [dBi]"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+			android:paddingEnd="16dp" />
+		<EditText
+			android:id="@+id/p6"
+			android:text="3"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:inputType="numberDecimal"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+	</LinearLayout>
+    		<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+        	android:text="Distance [m]"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+			android:paddingEnd="16dp" />
+		<EditText
+			android:id="@+id/p7"
+			android:text="1000"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:inputType="numberDecimal"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+	</LinearLayout>
+			<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+		android:orientation="vertical">
+		<CheckBox
+			android:id="@+id/c1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+			android:text="Including Attenuation by Atmospheric Gases" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+            <TextView
+                android:text="P [hPa]"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:paddingEnd="4dp" />
+            <EditText
+                android:id="@+id/p8"
+                android:text="1013"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:ems="6" />
+            <TextView
+                android:text="T [K]"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:paddingStart="8dp"
+                android:paddingEnd="4dp" />
+            <EditText
+                android:id="@+id/p9"
+                android:text="288"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:ems="6" />
+            <TextView
+                android:text="&#961; [g/m^3]"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:paddingStart="8dp"
+                android:paddingEnd="4dp" />
+            <EditText
+                android:id="@+id/pA"
+                android:text="7.5"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:ems="6" />
+        </LinearLayout>
+		<CheckBox
+			android:id="@+id/c2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+			android:text="Including Attenuation by Rainfall" />
+        <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+            android:gravity="right">
+		    <TextView
+        	    android:text="Rain Rate [mm/h]"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+			    android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+			    android:paddingEnd="4dp" />
+		    <EditText
+			    android:id="@+id/pB"
+			    android:text="5"
+			    android:layout_width="60dp"
+			    android:layout_height="wrap_content"
+				android:inputType="numberDecimal"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:ems="6" />
+	    </LinearLayout>
+	</LinearLayout>
+    		<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp">
+        <Button
+            android:id="@+id/b1"
+            android:text="Calc"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:textColor="#000000" />
+	</LinearLayout>
+    		<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="20dp">
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+	</LinearLayout>
+    		<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+        android:gravity="center"
+		android:orientation="vertical">
+        <TextView
+            android:id="@+id/a1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#0000aa"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/a2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#0000aa"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/a3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#0000aa"
+            android:gravity="center" />
+	</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

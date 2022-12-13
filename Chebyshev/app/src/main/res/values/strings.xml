@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cebyshev</string>
+    <string-array name="func_list">
+        <item>LPF</item>
+        <item>HPF</item>
+        <item>BPF</item>
+    </string-array>
+    <string-array name="type_list">
+        <item>&#960; - type</item>
+        <item>T - type</item>
+    </string-array>
+    
+</resources>
