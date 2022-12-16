@@ -3,12 +3,10 @@ package io.github.kuwa0824.pll;
 import android.app.*;
 import android.os.*;
 import android.widget.*;
-import android.widget.AdapterView.*;
 import android.view.*;
 import android.graphics.*;
 import java.io.*;
 import android.content.pm.*;
-import java.security.acl.*;
 import android.content.*;
 import android.Manifest;
 import android.provider.*;
@@ -109,6 +107,10 @@ public class MainActivity extends Activity
             @Override
             public void onClick(View view) {
                 Bitmap img = getViewBitmap(gView);
+                if(img == null) {
+                    Toast.makeText(getApplicationContext(), "fail to save", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 try {
                     File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/pictures/PLL");
                     if(!dir.isDirectory()) {

@@ -157,9 +157,13 @@ public class MainActivity extends Activity
             @Override
             public void onClick(View view) {
                 Bitmap img = getViewBitmap(v1);
+                if (img == null) {
+                    return;
+                }
                 try {
                     File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/pictures/Chebyshev");
                     if(!dir.isDirectory()) {
+                        Toast.makeText(getApplicationContext(), "fail to save", Toast.LENGTH_SHORT).show();
                         dir.mkdir();
                     }
                     File file = new File(dir, "save.png");
