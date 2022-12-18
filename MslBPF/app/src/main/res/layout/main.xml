@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal">
                 <TextView
-                    android:text="Pattern Thickness [um] :"
+                    android:text="Metal Thickness [mm] :"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
