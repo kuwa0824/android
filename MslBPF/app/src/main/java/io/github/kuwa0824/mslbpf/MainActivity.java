@@ -5,12 +5,10 @@ import android.os.*;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.view.View;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import java.util.logging.*;
 import android.widget.*;
 
 public class MainActivity extends Activity 

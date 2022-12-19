@@ -9,14 +9,14 @@ android {
             keyPassword 'maririn'
         }
     }
-    compileSdk 33
-    buildToolsVersion '33.0.1'
+    compileSdk 31
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "io.github.kuwa0824.mslbpf"
-        minSdk 21
-        targetSdk 33
-        versionCode 2
+        minSdk 24
+        targetSdk 31
+        versionCode 3
         versionName '2.0'
         ndk.abiFilters 'armeabi-v7a', 'ararm64-v8a','x86','x86_64'
         signingConfig signingConfigs.release
