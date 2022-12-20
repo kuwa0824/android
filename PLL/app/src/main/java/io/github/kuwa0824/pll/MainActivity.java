@@ -112,10 +112,12 @@ public class MainActivity extends Activity
                     return;
                 }
                 try {
-                    File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/PLL");
-                    if(!dir.isDirectory()) {
-                        dir.mkdir();
-                    }
+                    //File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/PLL");
+                    //if(!dir.isDirectory()) {
+                    //    dir.mkdir();
+                    //} stackoverflow.com/questions/36624756/how-to-save-bitmap-to-android-gallery
+                    File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "PLL");
+                    if(!dir.exists()) dir.mkdirs();
                     File file = new File(dir, "save.png");
                     FileOutputStream outStream = new FileOutputStream(file);
                     img.compress(Bitmap.CompressFormat.PNG, 100, outStream);
@@ -125,7 +127,7 @@ public class MainActivity extends Activity
                     cv.put(MediaStore.Images.Media.DISPLAY_NAME, "save.png");
                     cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
                     cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
-                    cv.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
+                    //cv.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
                     ContentResolver cr = getApplicationContext().getContentResolver();
                     cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
                     Toast.makeText(getApplicationContext(), "save in Pictures/PLL/save.png", Toast.LENGTH_SHORT).show();
