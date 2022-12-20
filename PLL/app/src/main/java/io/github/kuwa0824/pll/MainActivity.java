@@ -6,6 +6,9 @@ import android.widget.*;
 import android.view.*;
 import android.graphics.*;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.content.pm.*;
 import android.content.*;
 import android.Manifest;
@@ -116,15 +119,18 @@ public class MainActivity extends Activity
                     //if(!dir.isDirectory()) {
                     //    dir.mkdir();
                     //} stackoverflow.com/questions/36624756/how-to-save-bitmap-to-android-gallery
-                    File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "PLL");
-                    if(!dir.exists()) dir.mkdirs();
-                    File file = new File(dir, "save.png");
+                    Date md = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                    String basename = sdf.format(md) + ".png";
+                    Context ct = getApplicationContext();
+                    File file = new File(ct.getExternalFilesDir(Environment.DIRECTORY_PICTURES), basename);
                     FileOutputStream outStream = new FileOutputStream(file);
                     img.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+                    outStream.flush();
                     outStream.close();
                     ContentValues cv = new ContentValues();
-                    cv.put(MediaStore.Images.Media.TITLE, "save.png");
-                    cv.put(MediaStore.Images.Media.DISPLAY_NAME, "save.png");
+                    cv.put(MediaStore.Images.Media.TITLE, basename);
+                    cv.put(MediaStore.Images.Media.DISPLAY_NAME, basename);
                     cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
                     cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
                     //cv.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
