@@ -161,7 +161,7 @@ public class MainActivity extends Activity
                     return;
                 }
                 try {
-                    File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/pictures/Chebyshev");
+                    File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/Chebyshev");
                     if(!dir.isDirectory()) {
                         Toast.makeText(getApplicationContext(), "fail to save", Toast.LENGTH_SHORT).show();
                         dir.mkdir();
@@ -178,7 +178,7 @@ public class MainActivity extends Activity
                     cv.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
                     ContentResolver cr = getApplicationContext().getContentResolver();
                     cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
-                    Toast.makeText(getApplicationContext(), "save in pictures/Chebyshev/save.png", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "save in Pictures/Chebyshev/save.png", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

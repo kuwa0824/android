@@ -112,7 +112,7 @@ public class MainActivity extends Activity
                     return;
                 }
                 try {
-                    File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/pictures/PLL");
+                    File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/PLL");
                     if(!dir.isDirectory()) {
                         dir.mkdir();
                     }
@@ -128,7 +128,7 @@ public class MainActivity extends Activity
                     cv.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
                     ContentResolver cr = getApplicationContext().getContentResolver();
                     cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
-                    Toast.makeText(getApplicationContext(), "save in pictures/PLL/save.png", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "save in Pictures/PLL/save.png", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -137,11 +137,14 @@ public class MainActivity extends Activity
     }
 
     public Bitmap getViewBitmap(View view) {
-        view.setDrawingCacheEnabled(true);
-        Bitmap cache = view.getDrawingCache();
-        if(cache == null) { return null; }
-        Bitmap bitmap = Bitmap.createBitmap(cache);
-        view.setDrawingCacheEnabled(false);
+        //view.setDrawingCacheEnabled(true);
+        //Bitmap cache = view.getDrawingCache();
+        //if(cache == null) { return null; }
+        //Bitmap bitmap = Bitmap.createBitmap(cache);
+        //view.setDrawingCacheEnabled(false);
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas cb = new Canvas(bitmap);
+        view.draw(cb);
         return bitmap;
     }
 }
