@@ -1,6 +1,9 @@
 package io.github.kuwa0824.pll;
 
+import static java.security.AccessController.getContext;
+
 import android.app.*;
+import android.net.Uri;
 import android.os.*;
 import android.widget.*;
 import android.view.*;
@@ -8,7 +11,6 @@ import android.graphics.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import android.content.pm.*;
 import android.content.*;
 import android.Manifest;
@@ -111,49 +113,80 @@ public class MainActivity extends Activity
             public void onClick(View view) {
                 Bitmap img = getViewBitmap(gView);
                 if(img == null) {
-                    Toast.makeText(getApplicationContext(), "fail to save", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "fail to get image", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                try {
-                    //File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/PLL");
-                    //if(!dir.isDirectory()) {
-                    //    dir.mkdir();
-                    //} stackoverflow.com/questions/36624756/how-to-save-bitmap-to-android-gallery
-                    Date md = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                    String basename = sdf.format(md) + ".png";
-                    Context ct = getApplicationContext();
-                    File file = new File(ct.getExternalFilesDir(Environment.DIRECTORY_PICTURES), basename);
-                    FileOutputStream outStream = new FileOutputStream(file);
-                    img.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-                    outStream.flush();
-                    outStream.close();
+                Date md = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String filename = sdf.format(md) + ".png";
+                if (android.os.Build.VERSION.SDK_INT >= 29) {
                     ContentValues cv = new ContentValues();
-                    cv.put(MediaStore.Images.Media.TITLE, basename);
-                    cv.put(MediaStore.Images.Media.DISPLAY_NAME, basename);
-                    cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                    cv.put(MediaStore.Images.Media.DISPLAY_NAME, filename);
                     cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
-                    //cv.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
-                    ContentResolver cr = getApplicationContext().getContentResolver();
-                    cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
-                    Toast.makeText(getApplicationContext(), "save in Pictures/PLL/save.png", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    cv.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000);
+                    cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                    cv.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/PLL/");
+                    cv.put(MediaStore.Images.Media.IS_PENDING, true);
+                    ContentResolver res = getApplicationContext().getContentResolver();
+                    Uri coll = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+                    Uri uri = res.insert(coll, cv);
+                    try {
+                        if (uri != null) {
+                            OutputStream outStream = res.openOutputStream(uri);
+                            saveImageToStream(img, outStream);
+                            cv.put(MediaStore.Images.Media.IS_PENDING, false);
+                            res.update(uri, cv, null, null);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "fail to get uri", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    File dir = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "/PLL/");
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    File imgfile = new File(dir.getAbsolutePath() + filename);
+                    try {
+                        if (imgfile != null) {
+                            OutputStream outStream = new FileOutputStream(imgfile);
+                            saveImageToStream(img, outStream);
+                            ContentValues cv = new ContentValues();
+                            cv.put(MediaStore.Images.Media.DISPLAY_NAME, filename);
+                            cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+                            cv.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000);
+                            cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+                Toast.makeText(getApplicationContext(), "save in " + filename, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public Bitmap getViewBitmap(View view) {
-        //view.setDrawingCacheEnabled(true);
-        //Bitmap cache = view.getDrawingCache();
-        //if(cache == null) { return null; }
-        //Bitmap bitmap = Bitmap.createBitmap(cache);
-        //view.setDrawingCacheEnabled(false);
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas cb = new Canvas(bitmap);
         view.draw(cb);
         return bitmap;
+    }
+
+    public void saveImageToStream(Bitmap img, OutputStream outStream) {
+        if (outStream != null) {
+            try {
+                img.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+                outStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "fail to open stream", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 }
 

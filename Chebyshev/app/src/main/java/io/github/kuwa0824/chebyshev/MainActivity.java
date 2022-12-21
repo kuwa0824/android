@@ -1,14 +1,15 @@
 package io.github.kuwa0824.chebyshev;
 
 import android.app.*;
+import android.net.Uri;
 import android.os.*;
 import android.widget.*;
-import android.widget.AdapterView.*;
 import android.view.*;
 import android.graphics.*;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import android.content.pm.*;
-import java.security.acl.*;
 import android.content.*;
 import android.Manifest;
 import android.provider.*;
@@ -22,7 +23,7 @@ public class MainActivity extends Activity
     private EditText g1_start, g2_stop;
     private TextView label_f1, label_f2, label_f3;
     private Button b1, b2;
-    private GView v1;
+    private GView gView;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,7 +45,7 @@ public class MainActivity extends Activity
         g1_start = findViewById(R.id.param_g1);
         g2_stop = findViewById(R.id.param_g2);
         b1 = findViewById(R.id.btn_id);
-        v1 = findViewById(R.id.grf_id);
+        gView = findViewById(R.id.grf_id);
         bmp = new Bitmap[6];
         bmp[0] = BitmapFactory.decodeResource(getResources(), R.drawable.pi_lpf);
         bmp[1] = BitmapFactory.decodeResource(getResources(), R.drawable.pi_hpf);
@@ -120,7 +121,7 @@ public class MainActivity extends Activity
                         chk = false;
                     }
                     if(chk) {
-                        v1.startCalc(type, order, f1, f2, f3, a0, z0, g1, g2);
+                        gView.startCalc(type, order, f1, f2, f3, a0, z0, g1, g2);
                     } else {
                         Toast.makeText(getApplicationContext(), "wrong parameter", Toast.LENGTH_SHORT).show();
                     }
@@ -156,43 +157,81 @@ public class MainActivity extends Activity
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bitmap img = getViewBitmap(v1);
-                if (img == null) {
+                Bitmap img = getViewBitmap(gView);
+                if(img == null) {
+                    Toast.makeText(getApplicationContext(), "fail to get image", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                try {
-                    File dir= new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/Chebyshev");
-                    if(!dir.isDirectory()) {
-                        Toast.makeText(getApplicationContext(), "fail to save", Toast.LENGTH_SHORT).show();
-                        dir.mkdir();
-                    }
-                    File file = new File(dir, "save.png");
-                    FileOutputStream outStream = new FileOutputStream(file);
-                    img.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-                    outStream.close();
+                Date md = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String filename = sdf.format(md) + ".png";
+                if (android.os.Build.VERSION.SDK_INT >= 29) {
                     ContentValues cv = new ContentValues();
-                    cv.put(MediaStore.Images.Media.TITLE, "save.png");
-                    cv.put(MediaStore.Images.Media.DISPLAY_NAME, "save.png");
-                    cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                    cv.put(MediaStore.Images.Media.DISPLAY_NAME, filename);
                     cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
-                    cv.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
-                    ContentResolver cr = getApplicationContext().getContentResolver();
-                    cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
-                    Toast.makeText(getApplicationContext(), "save in Pictures/Chebyshev/save.png", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    cv.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000);
+                    cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                    cv.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/Chebyshev/");
+                    cv.put(MediaStore.Images.Media.IS_PENDING, true);
+                    ContentResolver res = getApplicationContext().getContentResolver();
+                    Uri coll = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+                    Uri uri = res.insert(coll, cv);
+                    try {
+                        if (uri != null) {
+                            OutputStream outStream = res.openOutputStream(uri);
+                            saveImageToStream(img, outStream);
+                            cv.put(MediaStore.Images.Media.IS_PENDING, false);
+                            res.update(uri, cv, null, null);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "fail to get uri", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    File dir = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "/Chebyshev/");
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    File imgfile = new File(dir.getAbsolutePath() + filename);
+                    try {
+                        if (imgfile != null) {
+                            OutputStream outStream = new FileOutputStream(imgfile);
+                            saveImageToStream(img, outStream);
+                            ContentValues cv = new ContentValues();
+                            cv.put(MediaStore.Images.Media.DISPLAY_NAME, filename);
+                            cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+                            cv.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000);
+                            cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+                Toast.makeText(getApplicationContext(), "save in " + filename, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public Bitmap getViewBitmap(View view) {
-        view.setDrawingCacheEnabled(true);
-        Bitmap cache = view.getDrawingCache();
-        if(cache == null) { return null; }
-        Bitmap bitmap = Bitmap.createBitmap(cache);
-        view.setDrawingCacheEnabled(false);
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas cb = new Canvas(bitmap);
+        view.draw(cb);
         return bitmap;
     }
-}
 
+    public void saveImageToStream(Bitmap img, OutputStream outStream) {
+        if (outStream != null) {
+            try {
+                img.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+                outStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "fail to open stream", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
+}
