@@ -165,6 +165,7 @@ public class MainActivity extends Activity
                 Date md = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
                 String filename = sdf.format(md) + ".png";
+                ContentResolver resolv = getApplicationContext().getContentResolver();
                 if (android.os.Build.VERSION.SDK_INT >= 29) {
                     ContentValues cv = new ContentValues();
                     cv.put(MediaStore.Images.Media.DISPLAY_NAME, filename);
@@ -173,28 +174,29 @@ public class MainActivity extends Activity
                     cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
                     cv.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/Chebyshev/");
                     cv.put(MediaStore.Images.Media.IS_PENDING, true);
-                    ContentResolver res = getApplicationContext().getContentResolver();
                     Uri coll = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
-                    Uri uri = res.insert(coll, cv);
+                    Uri uri = resolv.insert(coll, cv);
                     try {
                         if (uri != null) {
-                            OutputStream outStream = res.openOutputStream(uri);
+                            OutputStream outStream = resolv.openOutputStream(uri);
                             saveImageToStream(img, outStream);
                             cv.put(MediaStore.Images.Media.IS_PENDING, false);
-                            res.update(uri, cv, null, null);
+                            resolv.update(uri, cv, null, null);
                         } else {
                             Toast.makeText(getApplicationContext(), "fail to get uri", Toast.LENGTH_SHORT).show();
                             return;
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "fail to save", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 } else {
-                    File dir = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "/Chebyshev/");
-                    if (!dir.exists()) {
-                        dir.mkdirs();
+                    File dir = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES),"Chebyshev");
+                    if (!dir.isDirectory()) {
+                        dir.mkdir();
                     }
-                    File imgfile = new File(dir.getAbsolutePath() + filename);
+                    File imgfile = new File(dir.getAbsolutePath() + "/" + filename);
                     try {
                         if (imgfile != null) {
                             OutputStream outStream = new FileOutputStream(imgfile);
@@ -204,9 +206,13 @@ public class MainActivity extends Activity
                             cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
                             cv.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000);
                             cv.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                            cv.put(MediaStore.Images.Media.DATA, imgfile.getAbsolutePath());
+                            resolv.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "fail to save", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 }
                 Toast.makeText(getApplicationContext(), "save in " + filename, Toast.LENGTH_SHORT).show();
@@ -221,17 +227,17 @@ public class MainActivity extends Activity
         return bitmap;
     }
 
-    public void saveImageToStream(Bitmap img, OutputStream outStream) {
+    public void saveImageToStream(Bitmap img, OutputStream outStream) throws IOException {
         if (outStream != null) {
             try {
                 img.compress(Bitmap.CompressFormat.PNG, 100, outStream);
                 outStream.close();
             } catch (Exception e) {
                 e.printStackTrace();
+                throw e;
             }
         } else {
-            Toast.makeText(getApplicationContext(), "fail to open stream", Toast.LENGTH_SHORT).show();
-            return;
+            throw new IOException();
         }
     }
 }

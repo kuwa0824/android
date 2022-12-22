@@ -16,8 +16,8 @@ android {
         applicationId "io.github.kuwa0824.chebyshev"
         minSdk 24
         targetSdk 31
-        versionCode 2
-        versionName '2.0'
+        versionCode 3
+        versionName '3.0'
         ndk.abiFilters 'armeabi-v7a', 'ararm64-v8a','x86','x86_64'
         signingConfig signingConfigs.release
     }
