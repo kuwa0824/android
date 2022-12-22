@@ -192,11 +192,11 @@ public class MainActivity extends Activity
                         return;
                     }
                 } else {
-                    File dir = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES),"Chebyshev");
+                    File dir = new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/Chebyshev");
                     if (!dir.isDirectory()) {
                         dir.mkdir();
                     }
-                    File imgfile = new File(dir.getAbsolutePath() + "/" + filename);
+                    File imgfile = new File(dir, filename);
                     try {
                         if (imgfile != null) {
                             OutputStream outStream = new FileOutputStream(imgfile);

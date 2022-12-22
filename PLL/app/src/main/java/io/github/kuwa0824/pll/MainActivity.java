@@ -146,11 +146,11 @@ public class MainActivity extends Activity
                         return;
                     }
                 } else {
-                    File dir = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "PLL");
+                    File dir = new File(Environment.getExternalStorageDirectory().getPath() + "/Pictures/PLL");
                     if (!dir.isDirectory()) {
                         dir.mkdir();
                     }
-                    File imgfile = new File(dir.getAbsolutePath() + "/" + filename);
+                    File imgfile = new File(dir, filename);
                     try {
                         if (imgfile != null) {
                             OutputStream outStream = new FileOutputStream(imgfile);
