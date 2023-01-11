@@ -24,7 +24,7 @@ public class MainActivity extends Activity
         "WR-75_UBR-120.png", "WR-62_UBR-140.png", "WR-51_UBR-180.png", "WR-42_UBR-220.png",
         "WR-34_UBR-260.png", "WR-28_UBR-320.png", "WR-22_UG-383.png", "WR-19_UG-383.png",
         "WR-15_UG-385.png", "WR-12_UG-387.png", "WR-10_UG-387.png", "WR-8_UG-387.png",
-        "WR-6_UG-387.png", "WR-3_UG-387.png", "WR-4_UG-387.png", "WR-5_UG-387.png"
+        "WR-6_UG-387.png", "WR-5_UG-387.png", "WR-4_UG-387.png", "WR-3_UG-387.png"
     };
     private Integer ofs = 0;
     private Integer idx = 0;

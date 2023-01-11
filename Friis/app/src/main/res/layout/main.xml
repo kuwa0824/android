@@ -20,7 +20,7 @@
         		android:text="Radio Frequency [GHz]"
         		android:layout_width="0dp"
         		android:layout_height="wrap_content"
-				android:layout_weight="1"
+				android:layout_weight="6"
 				android:gravity="right"
             	android:textColor="#000000"
 				android:textAppearance="?android:attr/textAppearanceSmall"
@@ -30,7 +30,7 @@
 				android:text="1.5"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_weight="1"
+				android:layout_weight="4"
 				android:inputType="numberDecimal"
             	android:textAppearance="?android:attr/textAppearanceSmall" />
 		</LinearLayout>
@@ -41,7 +41,7 @@
         	android:text="Occupied Bandwidth [MHz]"
         	android:layout_width="0dp"
         	android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="6"
 			android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#000000"
@@ -51,7 +51,7 @@
 			android:text="20"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="4"
 			android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 	</LinearLayout>
@@ -62,7 +62,7 @@
         	android:text="TX Power [dBm]"
         	android:layout_width="0dp"
         	android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="6"
 			android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#000000"
@@ -72,7 +72,7 @@
 			android:text="10"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="4"
 			android:inputType="numberSigned|numberDecimal"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 	</LinearLayout>
@@ -83,7 +83,7 @@
         	android:text="RX Noise Figure [dB]"
         	android:layout_width="0dp"
         	android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="6"
 			android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#000000"
@@ -93,7 +93,7 @@
 			android:text="3.5"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="4"
 			android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 	</LinearLayout>
@@ -104,7 +104,7 @@
         	android:text="TX Antenna Gain [dBi]"
         	android:layout_width="0dp"
         	android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="6"
 			android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#000000"
@@ -114,7 +114,7 @@
 			android:text="3"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="4"
 			android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 	</LinearLayout>
@@ -125,7 +125,7 @@
         	android:text="RX Antenna Gain [dBi]"
         	android:layout_width="0dp"
         	android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="6"
 			android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#000000"
@@ -135,7 +135,7 @@
 			android:text="3"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="4"
 			android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 	</LinearLayout>
@@ -146,7 +146,7 @@
         	android:text="Distance [m]"
         	android:layout_width="0dp"
         	android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="6"
 			android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#000000"
@@ -156,7 +156,7 @@
 			android:text="1000"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
+			android:layout_weight="4"
 			android:inputType="numberDecimal"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 	</LinearLayout>
