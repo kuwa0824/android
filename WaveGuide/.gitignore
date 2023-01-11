@@ -1,0 +1,10 @@
+app/build/
+app/release/
+app/debug/
+gradle/
+gradelw
+gradelw.bat
+key.jks
+private_key.pepk
+.idea/
+.gradle/
