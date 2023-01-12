@@ -4,18 +4,32 @@
     android:layout_height="fill_parent"
 	android:orientation="vertical"
 	android:scrollbarAlwaysDrawVerticalTrack="true">
+	<TextView
+		android:text="IEEE Frequency Band"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="4dp" />
 	<Spinner
 		android:id="@+id/spin1"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="#CCC"
-		android:padding="10dp" />
+		android:layout_marginLeft="12dp"
+		android:layout_marginRight="12dp"
+		android:background="#CCD"
+		android:padding="8dp" />
+	<TextView
+		android:text="Waveguide + Flange standards"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="4dp" />
 	<Spinner
 		android:id="@+id/spin2"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="#EEE"
-		android:padding="10dp" />
+		android:layout_marginLeft="12dp"
+		android:layout_marginRight="12dp"
+		android:background="#CCD"
+		android:padding="8dp" />
 	<ImageView
 		android:id="@+id/img"
 		android:layout_width="match_parent"
