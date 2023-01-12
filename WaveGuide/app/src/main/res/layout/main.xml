@@ -30,7 +30,7 @@
 		android:layout_marginRight="12dp"
 		android:background="#CCD"
 		android:padding="8dp" />
-	<ImageView
+	<com.ortiz.touchview.TouchImageView
 		android:id="@+id/img"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
