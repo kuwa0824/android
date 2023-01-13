@@ -1,7 +1,6 @@
 # WaveGuide
 
-A simple CAE tool for microwave and wireless engineer.
+A catalog of Waveguide standars for microwave and wireless engineer.
 
-This app caliculates the received power at the receiving antenna for the transmitted power from various parameters according to the Friis transmission equation.
-Calculations that include the effects of the atmosphere and rainfall are also possible.
+This app displays common waveguide and flange shapes and their dimensions. You can also zoom in by pinching.
 
