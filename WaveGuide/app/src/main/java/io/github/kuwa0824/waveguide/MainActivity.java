@@ -84,28 +84,28 @@ public class MainActivity extends Activity
                         len = 7;
                         break;
                     case 1:
-                        ofs = 4;
-                        len = 5;
+                        ofs = 6;
+                        len = 3;
                         break;
                     case 2:
-                        ofs = 7;
-                        len = 5;
+                        ofs = 8;
+                        len = 3;
                         break;
                     case 3:
-                        ofs = 9;
-                        len = 4;
+                        ofs = 10;
+                        len = 3;
                         break;
                     case 4:
-                        ofs = 11;
-                        len = 5;
+                        ofs = 12;
+                        len = 3;
                         break;
                     case 5:
-                        ofs = 13;
-                        len = 6;
+                        ofs = 14;
+                        len = 4;
                         break;
                     case 6:
-                        ofs = 16;
-                        len = 5;
+                        ofs = 17;
+                        len = 3;
                         break;
                     case 7:
                         ofs = 18;

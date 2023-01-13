@@ -31,5 +31,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.github.MikeOrtiz:TouchImageView:1.4.1"
+    //implementation "com.github.MikeOrtiz:TouchImageView:1.4.1"
+    implementation files('libs/TouchImageView-1.4.1.aar')
+    // file from https://jitpack.io/com/github/MkeOrtiz/TouchImageView/1.4.1
 }
