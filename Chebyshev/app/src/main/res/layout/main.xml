@@ -27,7 +27,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:background="#000000"/>
+                android:background="#339944"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:background="#000000"/>
+                android:background="#339944"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -234,7 +234,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:background="#000000"/>
+                android:background="#339944"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -290,7 +290,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:background="#000000"/>
+                android:background="#339944"/>
 
             <Button
                 android:id="@+id/btn_id"
