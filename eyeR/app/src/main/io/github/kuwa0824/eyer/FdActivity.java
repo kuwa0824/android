@@ -183,11 +183,6 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
         Utils.bitmapToMat(bmp, lid_mask);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.blink);
         Utils.bitmapToMat(bmp, blink);
-        Imgproc.cvtColor(eye, eye, Imgproc.COLOR_RGB2BGRA);
-        Imgproc.cvtColor(lid, lid, Imgproc.COLOR_RGB2BGRA);
-        Imgproc.cvtColor(lid_mask, lid_mask, Imgproc.COLOR_RGB2GRAY);
-        Imgproc.threshold(lid_mask, lid_mask, 128,255, Imgproc.THRESH_BINARY);
-        Imgproc.cvtColor(blink, blink, Imgproc.COLOR_RGB2BGRA);
         resize_flg = 0;
     }
 
@@ -217,6 +212,17 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
             Imgproc.resize(lid_mask, lid_mask, new Size(lid_mask.width() * sc, lid_mask.height() * sc));
             Imgproc.resize(blink, blink, new Size(blink.width() * sc, blink.height() * sc));
             lid_roi = mRgba.submat(new Rect((int) ((wx - lid.width()) / 2), (int) ((wy - lid.height()) / 2), lid.width(), lid.height()));
+            Imgproc.rectangle(mRgba, new Point(0,0), new Point(mRgba.width(), mRgba.height()), new Scalar(0,0,0),-1);
+            lid.copyTo(lid_roi);
+            lid = mRgba.clone();
+            blink.copyTo(lid_roi);
+            blink = mRgba.clone();
+            Imgproc.rectangle(mRgba, new Point(0,0), new Point(mRgba.width(), mRgba.height()), new Scalar(255,255,255),-1);
+            lid_mask.copyTo(lid_roi);
+            lid_mask = mRgba.clone();
+            Imgproc.cvtColor(lid_mask, lid_mask, Imgproc.COLOR_RGB2GRAY);
+            Imgproc.threshold(lid_mask, lid_mask, 128,255, Imgproc.THRESH_BINARY);
+            lid_roi = mRgba.submat(new Rect(0,0,(int)(mRgba.width()),(int)(mRgba.height())));
             resize_flg = 1;
         }
         if (mAbsoluteFaceSize == 0) {
@@ -245,13 +251,14 @@ public class FdActivity extends CameraActivity implements CvCameraViewListener2 
             py = (facesArray[0].tl().y + facesArray[0].br().y) / 2;
             eyex = 0.5 - px / wx;
             eyey = py / wy - 0.5;
-            eyex *= 0.8;
-            eyey *= 0.8;
+            eyex *= 0.5;
+            eyey *= 0.5;
             if (eyex * eyex + eyey * eyey > 0.16) {
                 eyex *= Math.sqrt(0.16 / (eyex * eyex + eyey * eyey));
                 eyey *= Math.sqrt(0.16 / (eyex * eyex + eyey * eyey));
             }
             eyey *= 0.6;
+            eyey += 0.02;
         }
         int xofs =  (int) (wx / 2 + wy * eyex - eye.width() / 2);
         int yofs =  (int) (wy / 2 + wy * eyey - eye.height() / 2);
