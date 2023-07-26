@@ -1,4 +1,4 @@
-# Eye (Left)
+# Eye (Right)
 
 I'm watching you all the time...
 
